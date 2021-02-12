@@ -1,0 +1,25 @@
+{
+    "id": "6470C399",
+    "path": "~/Documents_no_icloud/Schule/Masterstudium/04_Semester/R - a non-technical introduction to big data techniques, team work and interactive visualization with applications to Marketing/Day 5/ChurnPrediction/R/getChurnProbability.R",
+    "project_path": "R/getChurnProbability.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1613122389498.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "1,19",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1613124014,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1613124014426,
+    "read_only": false,
+    "read_only_alternatives": []
+}

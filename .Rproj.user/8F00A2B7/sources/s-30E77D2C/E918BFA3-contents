@@ -1,0 +1,34 @@
+#install.packages("glmnet")
+library(data.table)
+library(testthat)
+library(ChurnPrediction)
+
+customer <- fread("~/Documents_no_icloud/Schule/Masterstudium/04_Semester/R - a non-technical introduction to big data techniques, team work and interactive visualization with applications to Marketing/Day 5/data_customer.csv")
+personal <- fread("~/Documents_no_icloud/Schule/Masterstudium/04_Semester/R - a non-technical introduction to big data techniques, team work and interactive visualization with applications to Marketing/Day 5/data_personal.csv")
+
+customer_personal <- merge(customer, personal, by = "CustomerId", all=FALSE)
+
+customer_personal[,Exited := as.factor(Exited)]
+customer_personal[,Gender := as.factor(Gender)]
+
+str(customer_personal)
+summary(customer_personal)
+
+formula <- Exited ~ CreditScore + Gender + Age + Tenure + Balance + NumOfProducts + HasCrCard+ IsActiveMember + EstimatedSalary
+model <- glm(formula = formula,
+             family="binomial", data=customer_personal)
+
+customer_personal[, ChurnProb := predict(model, customer_personal, type="response")]
+
+# highest prob and lowest prob customer
+maxCustomer <- customer_personal[ChurnProb == max(ChurnProb),]
+minCustomer <- customer_personal[ChurnProb == min(ChurnProb),]
+
+maxCustomer[,CustomerId]  #15653251
+minCustomer[,CustomerId]  #15662641
+
+
+customer_personal[,list(averagePerGender = mean(ChurnProb)),by=Gender]
+
+getChurnProbability(customer_personal, 15565701)
+
